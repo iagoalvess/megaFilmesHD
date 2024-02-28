@@ -1,1 +1,1 @@
-projeto filme basico
+Projeto que permite aos usuários visualizar os 10 filmes em cartaz atualmente, acessar descrições de cada filme, assistir aos trailers e até mesmo criar uma lista com seus filmes favoritos.
