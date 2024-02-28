@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import api from '../../services/api';
 
@@ -9,6 +9,8 @@ function Filme() {
   const {id} = useParams();
   const [filme, setFilme] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const navigation = useNavigate();
 
   useEffect(() => {
     async function loadFilme() {
@@ -22,8 +24,9 @@ function Filme() {
         setFilme(response.data);
         setLoading(false);
       })
-      .catch(() => {
-
+      .catch(() => {  
+        navigation("/", { replace: true });
+        return;
       })
     }
 
@@ -32,7 +35,7 @@ function Filme() {
     return () => {
 
     }
-  }, [])
+  }, [navigation, id])
 
   if(loading) {
     return(
@@ -55,7 +58,7 @@ function Filme() {
       <div className="area-buttons">
         <button>Salvar</button>
         <button>
-          <a href="#">
+          <a target="_blank" rel="external" href={`https://youtube.com/results?search_query=${filme.title} Trailer`}>
             Trailer
           </a>
         </button>
